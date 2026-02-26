@@ -178,7 +178,17 @@
       .tools-grid { grid-template-columns: repeat(3, 1fr); }
       .footer { padding: 24px 28px; flex-direction: column; gap: 6px; text-align: center; }
     }
-  </style>
+  
+/* ── RECOGNITIONS ── */
+.rec-grid { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+.rec-card { background: var(--surface); border:1px solid var(--border); border-radius:14px; padding:24px; transition:border-color .2s, transform .2s; }
+.rec-card:hover { border-color: var(--green); transform: translateY(-2px); }
+.rec-pill { display:inline-flex; align-items:center; gap:6px; font-size:10.5px; color:var(--green); background:var(--green-xlt); border:1px solid var(--green-lt); padding:3px 8px; border-radius:999px; margin-bottom:10px; }
+.rec-title { font-weight:600; font-size:14px; color:var(--ink); margin-bottom:6px; }
+.rec-meta { font-size:11.5px; color:var(--muted); margin-bottom:10px; }
+.rec-desc { font-size:13px; color:var(--muted); line-height:1.6; font-weight:300; }
+@media (max-width:900px){ .rec-grid{ grid-template-columns:1fr; } }
+</style>
 </head>
 <body>
 <!-- SIDEBAR -->
@@ -197,11 +207,11 @@
 <a class="nav-item" href="#education"><span class="ni">🎓</span> Education</a>
 <a class="nav-item" href="#certifications"><span class="ni">📜</span> Certifications</a>
 <a class="nav-item" href="#leadership"><span class="ni">🏆</span> Leadership</a>
-<a class="nav-item" href="#extracurricular"><span class="ni">🌱</span> Beyond Work</a>
+<a class="nav-item" href="#recognitions"><span class="ni">⭐</span> Recognitions</a><a class="nav-item" href="#extracurricular"><span class="ni">🌱</span> Beyond Work</a>
 </nav>
 <div class="sidebar-footer">
 <a class="resume-btn" download="" href="https://drive.google.com/file/d/12dD7WG3G16t2ZLvJpPQtDheSPbc62NnZ/view?usp=drive_link" target="_blank">↓ Download Resume</a>
-<a class="contact-pill" href="tel:+91-90491-52190" style="margin-top:10px; display:flex; justify-content:center;">📞 +91 90491 52190</a></div>
+</div>
 </aside>
 <!-- MAIN -->
 <main class="main">
@@ -216,6 +226,7 @@
 <a class="contact-pill" href="https://linkedin.com/in/fernandes-carl" target="_blank">🔗 LinkedIn</a>
 <a class="contact-pill" href="https://www.credly.com/users/carl-fernandes" target="_blank">🏅 Credly</a>
 <a class="contact-pill" href="https://maps.app.goo.gl/hu7Y3jMDyb2EcJY26" target="_blank">📍 India</a>
+<a class="contact-pill" href="tel:+91-9049152190">📞 +91-9049152190</a>
 </div>
 </div>
 <div class="hero-right">
@@ -237,7 +248,7 @@
 <div class="exp-company">NCR Voyix Corporation</div>
 <div class="exp-role">Senior Product Owner</div>
 <div class="exp-period">Apr 2021 – Present · 4 yrs</div>
-<div class="exp-summary">Led product ownership for Self-Service Checkout &amp; POS platforms serving Woolworths Group across Australia — driving roadmap, backlog, and releases in a complex enterprise environment.</div>
+<div class="exp-summary">Led product ownership for Self-Service Checkout &amp; POS platforms serving major global retailers — driving backlog, requirements, and releases in an evolving retail environment.</div>
 <div class="exp-award">🏅 PS Role Model — Q2 2021</div>
 </div>
 <div class="exp-card">
@@ -251,7 +262,7 @@
 <div class="exp-company">Kaleidofin Pvt. Ltd.</div>
 <div class="exp-role">Data Science Intern</div>
 <div class="exp-period">Apr 2020 – Sep 2020 · 6 mo</div>
-<div class="exp-summary">Built customer segmentation models, a financial health scoring framework, and Python &amp; Power BI dashboards to track onboarding workflows — supporting a fintech startup's product and risk strategy.</div>
+<div class="exp-summary">Built customer segmentation models, a financial health scoring framework, and Python dashboards to track onboarding workflows — supporting a fintech startup's product and risk strategy.</div>
 </div>
 </div>
 </section>
@@ -267,7 +278,7 @@
 <span class="approach-chevron">▼</span>
 </div>
 <div class="approach-body">
-<div class="approach-desc">I go into stores, run workshops, and talk to users before writing a single user story. Real problems lead to real solutions — not assumptions.</div>
+<div class="approach-desc">I conduct workshops, collect feature information and talk to various stakeholders before writing a single user story. Real problems lead to real solutions — not assumptions.</div>
 </div>
 </div>
 <div class="approach-card">
@@ -287,7 +298,7 @@
 <span class="approach-chevron">▼</span>
 </div>
 <div class="approach-body">
-<div class="approach-desc">Every prioritization decision is backed by operational KPIs, root cause analysis, or customer evidence — not gut feel or the loudest voice in the room.</div>
+<div class="approach-desc">Every prioritization decision is backed by operational KPIs, root cause analysis, or customer collected evidence — not gut feel or the loudest voice in the room.</div>
 </div>
 </div>
 <div class="approach-card">
@@ -297,7 +308,7 @@
 <span class="approach-chevron">▼</span>
 </div>
 <div class="approach-body">
-<div class="approach-desc">I treat stakeholders as co-owners of the roadmap. Alignment built early means fewer surprises at release — and faster trust over time.</div>
+<div class="approach-desc">I treat stakeholders as co-owners of the roadmap & requirements. Alignment built early means fewer surprises at release — and faster trust over time.</div>
 </div>
 </div>
 <div class="approach-card">
@@ -317,7 +328,7 @@
 <span class="approach-chevron">▼</span>
 </div>
 <div class="approach-body">
-<div class="approach-desc">I use Microsoft Copilot and generative AI tools to accelerate documentation, user story generation, and sprint reporting — so more time goes to thinking, less to writing.</div>
+<div class="approach-desc">I use generative AI tools to accelerate documentation, user story generation, and process automation — so more time goes to thinking, less to writing.</div>
 </div>
 </div>
 </div>
@@ -336,7 +347,6 @@
 <span class="tag">MVP Definition</span>
 <span class="tag">Product Discovery</span>
 <span class="tag">Customer Journey Mapping</span>
-<span class="tag">Go-to-Market</span>
 <span class="tag">Data-driven Decisions</span>
 <span class="tag">Root Cause Analysis</span>
 </div>
@@ -366,7 +376,6 @@
 <div class="tool-chip">MS Copilot</div>
 <div class="tool-chip">IBM BigFix</div>
 <div class="tool-chip">IBM Watson</div>
-<div class="tool-chip">Teams</div>
 </div>
 </div>
 </div>
@@ -510,7 +519,7 @@
 <div class="lead-desc">Active member of employee culture initiatives — cross-site engagement, events, and collaboration.</div>
 </div>
 </div>
-</section>
+</section><section id="recognitions"><div class="sec-label">Feedback</div><h2 class="sec-title">Recognitions from Leaders &amp; Customers</h2><div class="rec-grid"><div class="rec-card"><div class="rec-pill">Being Proactive</div><div class="rec-title">Proactive ownership &amp; clarity</div><div class="rec-meta">From Sunil Sabherwal — 2020–2021</div><div class="rec-desc">Repeatedly recognized for proactive engagement, maintaining a large backlog with clear grooming, asking for clarity, and driving customer-aligned delivery.</div></div><div class="rec-card"><div class="rec-pill">Customer First</div><div class="rec-title">Customer-first execution on Woolworths</div><div class="rec-meta">From Sunil Sabherwal — 2020–2021</div><div class="rec-desc">Stepped up across solution support and Jarvis migration sizing; learned the process quickly to ensure a successful customer outcome.</div></div><div class="rec-card"><div class="rec-pill">Customer First</div><div class="rec-title">“Getting the job done” under high load</div><div class="rec-meta">From James Ronaldson — 2023</div><div class="rec-desc">Managed workloads across BAU and project streams, executed reliably, and helped set the team up for success in Q1 2024 on the Woolworths account.</div></div><div class="rec-card"><div class="rec-pill">Simplicity</div><div class="rec-title">Attention to detail &amp; simplicity</div><div class="rec-meta">From Y. C. S. C. Bose — 2024</div><div class="rec-desc">Praised for detail orientation and a simplicity-first approach that improves stakeholder understanding and team execution.</div></div><div class="rec-card"><div class="rec-pill">Customer First</div><div class="rec-title">Customer-first mindset (ongoing)</div><div class="rec-meta">From Y. C. S. C. Bose — 2024</div><div class="rec-desc">Acknowledged for keeping customer priorities at the center of decisions and delivery.</div></div><div class="rec-card"><div class="rec-pill">Expertise</div><div class="rec-title">Visible leadership &amp; participation</div><div class="rec-meta">From Sunil Sabherwal — 2021–2022</div><div class="rec-desc">Recognized for taking the lead and engaging All Hands meets to drive successful outcomes for the broader team.</div></div></div></section>
 <!-- EXTRACURRICULAR -->
 <section id="extracurricular">
 <div class="sec-label">Beyond Work</div>
@@ -524,56 +533,67 @@
 <div class="extra-card">
 <span class="extra-icon">✍️</span>
 <div class="extra-title">Poetry &amp; Writing</div>
-<div class="extra-desc">Working toward a debut collection titled <em>'in between love, life happened'</em>.</div>
+<div class="extra-desc">Published a poem in a co-authored book and now working toward a debut collection.</div>
 </div>
 <div class="extra-card">
 <span class="extra-icon">🎵</span>
 <div class="extra-title">Music</div>
-<div class="extra-desc">A deep listener across genres — the right song for the right moment.</div>
+<div class="extra-desc">An avid multi-instrumentalist & deep listener across genres — the right song for the right moment.</div>
 </div>
 </div>
 </section>
 <!-- FOOTER -->
 <footer class="footer">
 <span>Carl Fernandes · Senior Product Owner · India</span>
-<span><a href="tel:+91-90491-52190">+91 90491 52190</a> · <a href="mailto:work.carlfern@gmail.com">work.carlfern@gmail.com</a> · linkedin.com/in/fernandes-carl</span>
+<span><a href="mailto:work.carlfern@gmail.com">work.carlfern@gmail.com</a> · linkedin.com/in/fernandes-carl</span>
 </footer>
 </main>
+
+
 <script>
-    // Accordion behavior
-    document.addEventListener('DOMContentLoaded', function () {
-      var cards = document.querySelectorAll('.approach-card');
-      cards.forEach(function (card) {
-        card.addEventListener('click', function () {
-          var isOpen = card.classList.contains('open');
-          cards.forEach(function (c) { c.classList.remove('open'); });
-          if (!isOpen) { card.classList.add('open'); }
-        });
-      });
+// Select hero + all sections in order
+const sections = [...document.querySelectorAll('#hero, section')];
+const navItems = document.querySelectorAll('.nav-item[href^="#"]');
+const navById = new Map(
+  [...navItems].map(a => [a.getAttribute('href').slice(1), a])
+);
 
-      // Scroll spy
-      var navItems = document.querySelectorAll('.nav-item[href^="#"]');
-      var sectionIds = ['hero','experience','approach','skills','education','certifications','leadership','extracurricular'];
-      window.addEventListener('scroll', function () {
-        var current = 'hero';
-        sectionIds.forEach(function (id) {
-          var el = document.getElementById(id);
-          if (el && window.scrollY >= el.offsetTop - 160) current = id;
-        });
-        navItems.forEach(function (n) {
-          n.classList.toggle('active', n.getAttribute('href') === '#' + current);
-        });
-      });
+// Observer with a viewport window tuned via rootMargin
+// - Top margin raises the activation zone slightly
+// - Bottom margin shrinks it so you switch earlier when entering the next section
+const observer = new IntersectionObserver((entries) => {
+  // Keep only sections that are intersecting
+  const vis = entries.filter(e => e.isIntersecting);
 
-      // Smooth scroll
-      navItems.forEach(function (n) {
-        n.addEventListener('click', function (e) {
-          e.preventDefault();
-          var target = document.getElementById(n.getAttribute('href').slice(1));
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
-        });
-      });
-    });
-  </script>
-</body>
-</html>
+  if (vis.length) {
+    // Pick the section with the largest visible area
+    vis.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    const id = vis[0].target.id || 'hero';
+
+    // Update nav highlight
+    navItems.forEach(n => n.classList.remove('active'));
+    const match = navById.get(id);
+    if (match) match.classList.add('active');
+  }
+}, {
+  root: null,
+  // Move the activation window downward a bit (top 20%) and
+  // keep the bottom higher (60%) so we switch before the next section is fully in view.
+  rootMargin: '-20% 0px -60% 0px',
+  threshold: [0.1, 0.25, 0.5, 0.75] // react as the visible ratio changes
+});
+
+// Observe hero + all sections
+sections.forEach(sec => observer.observe(sec));
+
+// Smooth scroll for clicks
+navItems.forEach(n => {
+  n.addEventListener('click', e => {
+    const hash = n.getAttribute('href');
+    if (!hash || !hash.startsWith('#')) return;
+    e.preventDefault();
+    const el = document.getElementById(hash.slice(1));
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
