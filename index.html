@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Carl Fernandes — Senior Product Owner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Outfit:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --bg: #F8F6F1;
+      --ink: #1C1B18;
+      --green: #2D6A4F;
+      --green-mid: #40916C;
+      --green-lt: #D8F3DC;
+      --green-xlt: #F0FAF4;
+      --muted: #7A7870;
+      --border: #E2DDD4;
+      --surface: #FFFFFF;
+      --tag: #EDE8DF;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: 220px; height: 100vh;
+      background: var(--surface); border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; padding: 36px 0 24px; z-index: 100; overflow-y: auto;
+    }
+    .sidebar-brand { padding: 0 24px 28px; border-bottom: 1px solid var(--border); }
+    .sidebar-initials { width: 42px; height: 42px; background: var(--green); color: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; margin-bottom: 12px; }
+    .sidebar-name { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.2; }
+    .sidebar-role { font-size: 11px; color: var(--muted); margin-top: 3px; }
+    .sidebar-nav { flex: 1; padding: 20px 12px; display: flex; flex-direction: column; gap: 2px; }
+    .nav-label { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 10px 12px 6px; }
+    .nav-item { display: flex; align-items: center; gap: 9px; padding: 8px 12px; border-radius: 7px; text-decoration: none; color: var(--muted); font-size: 13px; transition: all 0.15s; }
+    .nav-item:hover, .nav-item.active { background: var(--green-xlt); color: var(--green); font-weight: 500; }
+    .ni { font-size: 14px; width: 18px; text-align: center; }
+    .sidebar-footer { padding: 16px 24px 0; border-top: 1px solid var(--border); }
+    .resume-btn { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; padding: 9px 12px; background: var(--green); color: #fff; border-radius: 8px; text-decoration: none; font-size: 12.5px; font-weight: 500; transition: background 0.2s; }
+    .resume-btn:hover { background: var(--green-mid); }
+
+    /* ── MAIN ── */
+    .main { margin-left: 220px; }
+
+    /* ── HERO ── */
+    .hero { min-height: 92vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+    .hero-left { padding: 80px 56px 80px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--green); margin-bottom: 24px; }
+    .hero-eyebrow::before { content: ''; width: 24px; height: 1.5px; background: var(--green); }
+    .hero-name { font-family: 'Cormorant Garamond', serif; font-size: 62px; font-weight: 300; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .hero-name em { font-style: italic; color: var(--green); }
+    .hero-desc { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 400px; margin-bottom: 36px; font-weight: 300; }
+    .hero-contacts { display: flex; flex-wrap: wrap; gap: 10px; }
+    .contact-pill { display: flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; font-size: 12px; color: var(--muted); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .contact-pill:hover { border-color: var(--green); color: var(--green); }
+
+    .hero-right { background: var(--green); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .hero-right::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(0,0,0,0.15) 0%, transparent 60%); }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 40px 40px; }
+    .hero-stat-block { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; width: 320px; }
+    .hero-stat { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); padding: 28px 24px; transition: background 0.2s; }
+    .hero-stat:hover { background: rgba(255,255,255,0.14); }
+    .hero-stat:nth-child(1) { border-radius: 14px 0 0 0; }
+    .hero-stat:nth-child(2) { border-radius: 0 14px 0 0; }
+    .hero-stat:nth-child(3) { border-radius: 0 0 0 14px; }
+    .hero-stat:nth-child(4) { border-radius: 0 0 14px 0; }
+    .hero-stat .val { font-size: 40px; font-weight: 300; color: #fff; line-height: 1; margin-bottom: 6px; }
+    .hero-stat .lbl { font-size: 11px; color: rgba(255,255,255,0.6); line-height: 1.4; font-weight: 300; }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 64px; border-top: 1px solid var(--border); }
+    .sec-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--green); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .sec-label::after { content: ''; width: 48px; height: 1px; background: var(--border); }
+    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--ink); margin-bottom: 48px; line-height: 1.1; }
+
+    /* ── EXPERIENCE ── */
+    .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .exp-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px 24px; position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+    .exp-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(45,106,79,0.10); }
+    .exp-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.25s; }
+    .exp-card:hover::after { transform: scaleX(1); }
+    .exp-company { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
+    .exp-role { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--ink); line-height: 1.2; margin-bottom: 6px; }
+    .exp-period { font-size: 11.5px; color: var(--green); font-weight: 500; margin-bottom: 16px; }
+    .exp-summary { font-size: 13px; color: var(--muted); line-height: 1.65; font-weight: 300; }
+    .exp-award { display: inline-flex; align-items: center; gap: 5px; margin-top: 16px; font-size: 11px; color: var(--green); font-weight: 500; background: var(--green-xlt); padding: 4px 10px; border-radius: 20px; }
+
+    /* ── HOW I WORK — ACCORDION ── */
+    .approach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .approach-card { border: 1px solid var(--border); border-radius: 14px; background: var(--surface); cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s; overflow: hidden; }
+    .approach-card:hover { border-color: var(--green); }
+    .approach-card.open { border-color: var(--green); box-shadow: 0 8px 24px rgba(45,106,79,0.10); }
+    .approach-header { display: flex; align-items: center; gap: 14px; padding: 22px; }
+    .approach-icon { font-size: 22px; width: 42px; height: 42px; background: var(--green-xlt); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s; }
+    .approach-card.open .approach-icon { background: var(--green-lt); }
+    .approach-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 400; color: var(--ink); flex: 1; }
+    .approach-chevron { font-size: 11px; color: var(--muted); transition: transform 0.25s; flex-shrink: 0; }
+    .approach-card.open .approach-chevron { transform: rotate(180deg); color: var(--green); }
+    .approach-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s ease; padding: 0 22px; }
+    .approach-card.open .approach-body { max-height: 220px; padding: 0 22px 20px; }
+    .approach-desc { font-size: 13px; color: var(--muted); line-height: 1.7; font-weight: 300; border-top: 1px solid var(--border); padding-top: 14px; }
+
+    /* ── SKILLS ── */
+    .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .skill-group-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 12px; }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 28px; }
+    .tag { padding: 5px 13px; background: var(--tag); border-radius: 100px; font-size: 12.5px; color: var(--ink); transition: background 0.15s, color 0.15s; }
+    .tag:hover { background: var(--green-lt); color: var(--green); }
+    .tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .tool-chip { padding: 9px 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: 12px; color: var(--muted); text-align: center; transition: border-color 0.15s, color 0.15s; }
+    .tool-chip:hover { border-color: var(--green); color: var(--green); }
+
+    /* ── EDUCATION ── */
+    .edu-certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .edu-item { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-dot { width: 9px; height: 9px; background: var(--green); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+    .edu-degree { font-weight: 500; font-size: 14px; margin-bottom: 3px; }
+    .edu-school { font-size: 12.5px; color: var(--muted); margin-bottom: 3px; }
+    .edu-year { font-size: 11.5px; color: var(--green); font-weight: 500; }
+
+    /* ── CERTIFICATIONS ── */
+    .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .cert-item { display: flex; align-items: center; gap: 12px; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; text-decoration: none; transition: border-color 0.15s, box-shadow 0.15s; position: relative; }
+    .cert-item:hover { border-color: var(--green); box-shadow: 0 4px 16px rgba(45,106,79,0.08); }
+    .cert-placeholder { opacity: 0.45; border-style: dashed; }
+    .cert-placeholder:hover { opacity: 0.75; }
+    .cert-icon { font-size: 20px; width: 40px; height: 40px; background: var(--green-xlt); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cert-info { flex: 1; min-width: 0; }
+    .cert-name { font-size: 12.5px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+    .cert-issuer { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .cert-badge { margin-left: auto; font-size: 10px; font-weight: 600; color: var(--green); background: var(--green-xlt); border: 1px solid var(--green-lt); padding: 3px 8px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+
+    /* ── LEADERSHIP / EXTRAS ── */
+    .leadership-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+    .lead-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+    .lead-card:hover { border-color: var(--green); transform: translateY(-2px); }
+    .lead-card-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
+    .lead-emoji { font-size: 22px; width: 44px; height: 44px; background: var(--green-xlt); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .lead-title { font-weight: 600; font-size: 14px; color: var(--ink); line-height: 1.3; margin-bottom: 3px; }
+    .lead-org { font-size: 11.5px; color: var(--green); font-weight: 500; }
+    .lead-desc { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+    .lead-year { position: absolute; top: 16px; right: 16px; font-size: 10.5px; color: var(--muted); background: var(--tag); padding: 2px 8px; border-radius: 20px; }
+
+    /* ── EXTRACURRICULAR ── */
+    .extra-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .extra-card { padding: 22px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; transition: border-color 0.2s; text-align: center; }
+    .extra-card:hover { border-color: var(--green); }
+    .extra-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+    .extra-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 400; margin-bottom: 6px; color: var(--ink); }
+    .extra-desc { font-size: 12px; color: var(--muted); line-height: 1.5; font-weight: 300; }
+
+    /* ── FOOTER ── */
+    .footer { padding: 28px 64px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { min-height: 280px; }
+      .hero-left { padding: 48px 28px; }
+      .hero-name { font-size: 44px; }
+      section { padding: 56px 28px; }
+      .exp-grid, .approach-grid, .extra-strip, .leadership-grid { grid-template-columns: 1fr; }
+      .skills-layout, .edu-certs-grid { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer { padding: 24px 28px; flex-direction: column; gap: 6px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<div class="sidebar-brand">
+<div class="sidebar-initials">CF</div>
+<div class="sidebar-name">Carl Fernandes</div>
+<div class="sidebar-role">Senior Product Owner</div>
+</div>
+<nav class="sidebar-nav">
+<div class="nav-label">Navigate</div>
+<a class="nav-item active" href="#hero"><span class="ni">👤</span> About</a>
+<a class="nav-item" href="#experience"><span class="ni">💼</span> Experience</a>
+<a class="nav-item" href="#approach"><span class="ni">🧠</span> How I Work</a>
+<a class="nav-item" href="#skills"><span class="ni">⚡</span> Skills</a>
+<a class="nav-item" href="#education"><span class="ni">🎓</span> Education</a>
+<a class="nav-item" href="#certifications"><span class="ni">📜</span> Certifications</a>
+<a class="nav-item" href="#leadership"><span class="ni">🏆</span> Leadership</a>
+<a class="nav-item" href="#extracurricular"><span class="ni">🌱</span> Beyond Work</a>
+</nav>
+<div class="sidebar-footer">
+<a class="resume-btn" download="" href="https://drive.google.com/file/d/12dD7WG3G16t2ZLvJpPQtDheSPbc62NnZ/view?usp=drive_link" target="_blank">↓ Download Resume</a>
+<a class="contact-pill" href="tel:+91-90491-52190" style="margin-top:10px; display:flex; justify-content:center;">📞 +91 90491 52190</a></div>
+</aside>
+<!-- MAIN -->
+<main class="main">
+<!-- HERO -->
+<div class="hero" id="hero">
+<div class="hero-left">
+<div class="hero-eyebrow">Senior Product Owner</div>
+<h1 class="hero-name">Carl<br/>Fernandes</h1>
+<p class="hero-desc">Building scalable technology platforms by connecting business strategy, engineering excellence, and real human experience.</p>
+<div class="hero-contacts">
+<a class="contact-pill" href="mailto:work.carlfern@gmail.com">✉️ work.carlfern@gmail.com</a>
+<a class="contact-pill" href="https://linkedin.com/in/fernandes-carl" target="_blank">🔗 LinkedIn</a>
+<a class="contact-pill" href="https://www.credly.com/users/carl-fernandes" target="_blank">🏅 Credly</a>
+<a class="contact-pill" href="https://maps.app.goo.gl/hu7Y3jMDyb2EcJY26" target="_blank">📍 India</a>
+</div>
+</div>
+<div class="hero-right">
+<div class="hero-grid-bg"></div>
+<div class="hero-stat-block">
+<div class="hero-stat"><div class="val">170+</div><div class="lbl">Product enhancements delivered</div></div>
+<div class="hero-stat"><div class="val">1.5K+</div><div class="lbl">Retail stores supported</div></div>
+<div class="hero-stat"><div class="val">~50%</div><div class="lbl">Reduction in system reboots</div></div>
+<div class="hero-stat"><div class="val">8 yrs</div><div class="lbl">Professional experience</div></div>
+</div>
+</div>
+</div>
+<!-- EXPERIENCE -->
+<section id="experience">
+<div class="sec-label">Career</div>
+<h2 class="sec-title">Where I've worked</h2>
+<div class="exp-grid">
+<div class="exp-card">
+<div class="exp-company">NCR Voyix Corporation</div>
+<div class="exp-role">Senior Product Owner</div>
+<div class="exp-period">Apr 2021 – Present · 4 yrs</div>
+<div class="exp-summary">Led product ownership for Self-Service Checkout &amp; POS platforms serving Woolworths Group across Australia — driving roadmap, backlog, and releases in a complex enterprise environment.</div>
+<div class="exp-award">🏅 PS Role Model — Q2 2021</div>
+</div>
+<div class="exp-card">
+<div class="exp-company">IBM India Pvt. Ltd.</div>
+<div class="exp-role">Associate System Engineer</div>
+<div class="exp-period">Aug 2016 – May 2019 · 3 yrs</div>
+<div class="exp-summary">Managed enterprise infrastructure and patch compliance for APAC clients using IBM BigFix, and built AI-driven automation solutions with IBM Watson for L2/L3 support teams.</div>
+<div class="exp-award">🏅 Best Graduate Hire — 2017</div>
+</div>
+<div class="exp-card">
+<div class="exp-company">Kaleidofin Pvt. Ltd.</div>
+<div class="exp-role">Data Science Intern</div>
+<div class="exp-period">Apr 2020 – Sep 2020 · 6 mo</div>
+<div class="exp-summary">Built customer segmentation models, a financial health scoring framework, and Python &amp; Power BI dashboards to track onboarding workflows — supporting a fintech startup's product and risk strategy.</div>
+</div>
+</div>
+</section>
+<!-- HOW I WORK — ACCORDION -->
+<section id="approach">
+<div class="sec-label">Approach</div>
+<h2 class="sec-title">How I work</h2>
+<div class="approach-grid">
+<div class="approach-card">
+<div class="approach-header">
+<div class="approach-icon">🔍</div>
+<div class="approach-title">Discovery First</div>
+<span class="approach-chevron">▼</span>
+</div>
+<div class="approach-body">
+<div class="approach-desc">I go into stores, run workshops, and talk to users before writing a single user story. Real problems lead to real solutions — not assumptions.</div>
+</div>
+</div>
+<div class="approach-card">
+<div class="approach-header">
+<div class="approach-icon">📐</div>
+<div class="approach-title">Clarity over Complexity</div>
+<span class="approach-chevron">▼</span>
+</div>
+<div class="approach-body">
+<div class="approach-desc">Complex requirements deserve simple, well-scoped user stories. I translate business ambiguity into acceptance criteria that engineering can build against confidently.</div>
+</div>
+</div>
+<div class="approach-card">
+<div class="approach-header">
+<div class="approach-icon">📊</div>
+<div class="approach-title">Decisions by Data</div>
+<span class="approach-chevron">▼</span>
+</div>
+<div class="approach-body">
+<div class="approach-desc">Every prioritization decision is backed by operational KPIs, root cause analysis, or customer evidence — not gut feel or the loudest voice in the room.</div>
+</div>
+</div>
+<div class="approach-card">
+<div class="approach-header">
+<div class="approach-icon">🤝</div>
+<div class="approach-title">Stakeholder as Partner</div>
+<span class="approach-chevron">▼</span>
+</div>
+<div class="approach-body">
+<div class="approach-desc">I treat stakeholders as co-owners of the roadmap. Alignment built early means fewer surprises at release — and faster trust over time.</div>
+</div>
+</div>
+<div class="approach-card">
+<div class="approach-header">
+<div class="approach-icon">🔁</div>
+<div class="approach-title">Ship, Learn, Iterate</div>
+<span class="approach-chevron">▼</span>
+</div>
+<div class="approach-body">
+<div class="approach-desc">170+ enhancements weren't delivered in one go. Consistent, incremental delivery builds platform confidence and keeps momentum with business teams.</div>
+</div>
+</div>
+<div class="approach-card">
+<div class="approach-header">
+<div class="approach-icon">🤖</div>
+<div class="approach-title">AI-Augmented Ownership</div>
+<span class="approach-chevron">▼</span>
+</div>
+<div class="approach-body">
+<div class="approach-desc">I use Microsoft Copilot and generative AI tools to accelerate documentation, user story generation, and sprint reporting — so more time goes to thinking, less to writing.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SKILLS -->
+<section id="skills">
+<div class="sec-label">Capabilities</div>
+<h2 class="sec-title">Skills &amp; tools</h2>
+<div class="skills-layout">
+<div>
+<div class="skill-group-title">Product &amp; Strategy</div>
+<div class="tag-cloud">
+<span class="tag">Product Strategy</span>
+<span class="tag">Roadmap Planning</span>
+<span class="tag">OKR Alignment</span>
+<span class="tag">MVP Definition</span>
+<span class="tag">Product Discovery</span>
+<span class="tag">Customer Journey Mapping</span>
+<span class="tag">Go-to-Market</span>
+<span class="tag">Data-driven Decisions</span>
+<span class="tag">Root Cause Analysis</span>
+</div>
+<div class="skill-group-title">Agile &amp; Delivery</div>
+<div class="tag-cloud">
+<span class="tag">Agile Methodologies</span>
+<span class="tag">Sprint Planning</span>
+<span class="tag">Backlog Prioritization</span>
+<span class="tag">Release Management</span>
+<span class="tag">User Story Definition</span>
+<span class="tag">Acceptance Criteria</span>
+<span class="tag">Stakeholder Management</span>
+<span class="tag">Cross-functional Leadership</span>
+</div>
+</div>
+<div>
+<div class="skill-group-title">Tools &amp; Technologies</div>
+<div class="tools-grid">
+<div class="tool-chip">Jira</div>
+<div class="tool-chip">Confluence</div>
+<div class="tool-chip">Figma</div>
+<div class="tool-chip">Power BI</div>
+<div class="tool-chip">SQL</div>
+<div class="tool-chip">Python</div>
+<div class="tool-chip">Postman</div>
+<div class="tool-chip">Fiddler</div>
+<div class="tool-chip">MS Copilot</div>
+<div class="tool-chip">IBM BigFix</div>
+<div class="tool-chip">IBM Watson</div>
+<div class="tool-chip">Teams</div>
+</div>
+</div>
+</div>
+</section>
+<!-- EDUCATION -->
+<section id="education">
+<div class="sec-label">Background</div>
+<h2 class="sec-title">Education</h2>
+<div class="edu-certs-grid">
+<div>
+<div class="edu-item">
+<div class="edu-dot"></div>
+<div>
+<div class="edu-degree">PGDM — Big Data Analytics</div>
+<div class="edu-school">Goa Institute of Management, Goa</div>
+<div class="edu-year">2019 – 2021</div>
+</div>
+</div>
+<div class="edu-item">
+<div class="edu-dot"></div>
+<div>
+<div class="edu-degree">BE — Electrical &amp; Electronics Engineering</div>
+<div class="edu-school">Goa College of Engineering, Goa</div>
+<div class="edu-year">2012 – 2016</div>
+</div>
+</div>
+</div>
+<div style="display:flex; flex-direction:column; justify-content:center;">
+<p style="font-size:13px; color:var(--muted); font-weight:300; line-height:1.7;">
+            A management background in Big Data Analytics layered on an engineering foundation — giving me the ability to think in systems, communicate with technical teams, and make product decisions that are grounded in data.
+          </p>
+</div>
+</div>
+</section>
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+<div class="sec-label">Credentials</div>
+<h2 class="sec-title">Certifications &amp; badges</h2>
+<div class="certs-grid">
+<a class="cert-item" href="https://www.credly.com/users/carl-fernandes" target="_blank">
+<div class="cert-icon">💡</div>
+<div class="cert-info">
+<div class="cert-name">Enterprise Design Thinking Practitioner</div>
+<div class="cert-issuer">IBM · Aug 2016</div>
+</div>
+<span class="cert-badge">🏅 Verified</span>
+</a>
+<a class="cert-item" href="https://www.credly.com/users/carl-fernandes" target="_blank">
+<div class="cert-icon">🧠</div>
+<div class="cert-info">
+<div class="cert-name">Cognitive Practitioner</div>
+<div class="cert-issuer">IBM · Jan 2018</div>
+</div>
+<span class="cert-badge">🏅 Verified</span>
+</a>
+<a class="cert-item" href="https://www.credly.com/users/carl-fernandes" target="_blank">
+<div class="cert-icon">🐍</div>
+<div class="cert-info">
+<div class="cert-name">Python for Data Science</div>
+<div class="cert-issuer">IBM Skills Network · May 2019</div>
+</div>
+<span class="cert-badge">🏅 Verified</span>
+</a>
+<a class="cert-item" href="https://www.credly.com/users/carl-fernandes" target="_blank">
+<div class="cert-icon">⚙️</div>
+<div class="cert-info">
+<div class="cert-name">IBM Automation Practitioner</div>
+<div class="cert-issuer">IBM · Jul 2018</div>
+</div>
+<span class="cert-badge">🏅 Verified</span>
+</a>
+<a class="cert-item" href="https://www.credly.com/users/carl-fernandes" target="_blank">
+<div class="cert-icon">🏆</div>
+<div class="cert-info">
+<div class="cert-name">SAS Bitathon — National Hackathon</div>
+<div class="cert-issuer">SAS · Feb 2020</div>
+</div>
+<span class="cert-badge">🏅 Verified</span>
+</a>
+<a class="cert-item" href="#" target="_blank">
+<div class="cert-icon">📗</div>
+<div class="cert-info">
+<div class="cert-name">Lean Six Sigma Green Belt</div>
+<div class="cert-issuer">KPMG India</div>
+</div>
+<span class="cert-badge">✓ Certified</span>
+</a>
+</div>
+<div style="margin-top:20px; display:flex; align-items:center; gap:16px;">
+<a href="https://www.credly.com/users/carl-fernandes" style="display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--green); font-weight:500; text-decoration:none;" target="_blank">View all badges on Credly →</a>
+<span style="font-size:12px; color:var(--muted); font-weight:300;">Includes Watson AI, SAS Data Management &amp; more</span>
+</div>
+</section>
+<!-- LEADERSHIP -->
+<section id="leadership">
+<div class="sec-label">Impact Beyond Roles</div>
+<h2 class="sec-title">Leadership &amp; recognition</h2>
+<div class="leadership-grid">
+<div class="lead-card">
+<div class="lead-year">2019 – 2021</div>
+<div class="lead-card-top">
+<div class="lead-emoji">🎓</div>
+<div>
+<div class="lead-title">Corporate Relations &amp; Placements</div>
+<div class="lead-org">Goa Institute of Management</div>
+</div>
+</div>
+<div class="lead-desc">Spearheaded campus placement operations — onboarded 70+ recruiters and aligned training with industry needs, achieving <strong>100% placement success</strong>.</div>
+</div>
+<div class="lead-card">
+<div class="lead-year">2020</div>
+<div class="lead-card-top">
+<div class="lead-emoji">🥈</div>
+<div>
+<div class="lead-title">National Finalist — SAS Bitathon</div>
+<div class="lead-org">SAS Institute India</div>
+</div>
+</div>
+<div class="lead-desc">Competed nationally in SAS's data science hackathon — advanced to finals through predictive modelling and analytics storytelling.</div>
+</div>
+<div class="lead-card">
+<div class="lead-year">2015 – 2016</div>
+<div class="lead-card-top">
+<div class="lead-emoji">📣</div>
+<div>
+<div class="lead-title">General Secretary — ENEXSA</div>
+<div class="lead-org">Goa College of Engineering</div>
+</div>
+</div>
+<div class="lead-desc">Represented 200+ students; led academic initiatives, industry engagement events, and alumni outreach.</div>
+</div>
+<div class="lead-card">
+<div class="lead-year">Ongoing</div>
+<div class="lead-card-top">
+<div class="lead-emoji">🤝</div>
+<div>
+<div class="lead-title">Culture &amp; Engagement Crew</div>
+<div class="lead-org">IBM Club &amp; NCR Voyix</div>
+</div>
+</div>
+<div class="lead-desc">Active member of employee culture initiatives — cross-site engagement, events, and collaboration.</div>
+</div>
+</div>
+</section>
+<!-- EXTRACURRICULAR -->
+<section id="extracurricular">
+<div class="sec-label">Beyond Work</div>
+<h2 class="sec-title">Other interests</h2>
+<div class="extra-strip">
+<div class="extra-card">
+<span class="extra-icon">📸</span>
+<div class="extra-title">Photography</div>
+<div class="extra-desc">An eye for composition that feeds into UX and visual storytelling.</div>
+</div>
+<div class="extra-card">
+<span class="extra-icon">✍️</span>
+<div class="extra-title">Poetry &amp; Writing</div>
+<div class="extra-desc">Working toward a debut collection titled <em>'in between love, life happened'</em>.</div>
+</div>
+<div class="extra-card">
+<span class="extra-icon">🎵</span>
+<div class="extra-title">Music</div>
+<div class="extra-desc">A deep listener across genres — the right song for the right moment.</div>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="footer">
+<span>Carl Fernandes · Senior Product Owner · India</span>
+<span><a href="tel:+91-90491-52190">+91 90491 52190</a> · <a href="mailto:work.carlfern@gmail.com">work.carlfern@gmail.com</a> · linkedin.com/in/fernandes-carl</span>
+</footer>
+</main>
+<script>
+    // Accordion behavior
+    document.addEventListener('DOMContentLoaded', function () {
+      var cards = document.querySelectorAll('.approach-card');
+      cards.forEach(function (card) {
+        card.addEventListener('click', function () {
+          var isOpen = card.classList.contains('open');
+          cards.forEach(function (c) { c.classList.remove('open'); });
+          if (!isOpen) { card.classList.add('open'); }
+        });
+      });
+
+      // Scroll spy
+      var navItems = document.querySelectorAll('.nav-item[href^="#"]');
+      var sectionIds = ['hero','experience','approach','skills','education','certifications','leadership','extracurricular'];
+      window.addEventListener('scroll', function () {
+        var current = 'hero';
+        sectionIds.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el && window.scrollY >= el.offsetTop - 160) current = id;
+        });
+        navItems.forEach(function (n) {
+          n.classList.toggle('active', n.getAttribute('href') === '#' + current);
+        });
+      });
+
+      // Smooth scroll
+      navItems.forEach(function (n) {
+        n.addEventListener('click', function (e) {
+          e.preventDefault();
+          var target = document.getElementById(n.getAttribute('href').slice(1));
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
