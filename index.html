@@ -550,50 +550,103 @@
 </main>
 
 
+
 <script>
-// Select hero + all sections in order
-const sections = [...document.querySelectorAll('#hero, section')];
-const navItems = document.querySelectorAll('.nav-item[href^="#"]');
-const navById = new Map(
-  [...navItems].map(a => [a.getAttribute('href').slice(1), a])
-);
+/* ========= Accordion (How I work) ========= */
+(function () {
+  const ACCORDION_SELECTOR = '.approach-card';
+  const HEADER_SELECTOR    = '.approach-header';
+  const BODY_SELECTOR      = '.approach-body';
 
-// Observer with a viewport window tuned via rootMargin
-// - Top margin raises the activation zone slightly
-// - Bottom margin shrinks it so you switch earlier when entering the next section
-const observer = new IntersectionObserver((entries) => {
-  // Keep only sections that are intersecting
-  const vis = entries.filter(e => e.isIntersecting);
+  // Close all cards (optionally skipping one)
+  function closeAll(skipEl) {
+    document.querySelectorAll(ACCORDION_SELECTOR + '.open').forEach(card => {
+      if (skipEl && card === skipEl) return;
+      card.classList.remove('open');
+      const body = card.querySelector(BODY_SELECTOR);
+      if (body) body.style.maxHeight = '0px';
+    });
+  }
 
-  if (vis.length) {
-    // Pick the section with the largest visible area
+  // Open a specific card
+  function openCard(card) {
+    const body = card.querySelector(BODY_SELECTOR);
+    if (!body) return;
+    card.classList.add('open');
+    // Set max-height to the content height so CSS transition animates
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+
+  // Toggle a specific card
+  function toggleCard(card) {
+    if (card.classList.contains('open')) {
+      closeAll(); // close everything
+    } else {
+      closeAll(card); // close others, then open this
+      openCard(card);
+    }
+  }
+
+  // Event delegation for clicks on headers or anywhere inside the card
+  document.addEventListener('click', function (e) {
+    // Look for a header click or any child of a card
+    const header = e.target.closest(HEADER_SELECTOR);
+    const card   = header ? header.closest(ACCORDION_SELECTOR) : null;
+    if (!card) return; // not a click on header/accordion
+
+    e.preventDefault();
+    toggleCard(card);
+  });
+
+  // Ensure initial state is collapsed and inline max-heights are set to 0
+  document.querySelectorAll(ACCORDION_SELECTOR).forEach(card => {
+    const body = card.querySelector(BODY_SELECTOR);
+    if (body) body.style.maxHeight = '0px';
+  });
+
+  // Recompute height on resize for any open card (content might reflow)
+  window.addEventListener('resize', () => {
+    document.querySelectorAll(ACCORDION_SELECTOR + '.open .approach-body').forEach(body => {
+      body.style.maxHeight = body.scrollHeight + 'px';
+    });
+  });
+})();
+
+/* ========= Scroll‑spy (safe version) ========= */
+(function () {
+  const sections = [...document.querySelectorAll('#hero, section')];
+  const navItems = document.querySelectorAll('.nav-item[href^="#"]');
+  const navById  = new Map([...navItems].map(a => [a.getAttribute('href').slice(1), a]));
+
+  // Robust observer (no magic offsets)
+  const observer = new IntersectionObserver((entries) => {
+    const vis = entries.filter(e => e.isIntersecting);
+    if (!vis.length) return;
+
+    // Pick the most visible section
     vis.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
     const id = vis[0].target.id || 'hero';
 
-    // Update nav highlight
     navItems.forEach(n => n.classList.remove('active'));
     const match = navById.get(id);
     if (match) match.classList.add('active');
-  }
-}, {
-  root: null,
-  // Move the activation window downward a bit (top 20%) and
-  // keep the bottom higher (60%) so we switch before the next section is fully in view.
-  rootMargin: '-20% 0px -60% 0px',
-  threshold: [0.1, 0.25, 0.5, 0.75] // react as the visible ratio changes
-});
-
-// Observe hero + all sections
-sections.forEach(sec => observer.observe(sec));
-
-// Smooth scroll for clicks
-navItems.forEach(n => {
-  n.addEventListener('click', e => {
-    const hash = n.getAttribute('href');
-    if (!hash || !hash.startsWith('#')) return;
-    e.preventDefault();
-    const el = document.getElementById(hash.slice(1));
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, {
+    root: null,
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: [0.1, 0.25, 0.5, 0.75]
   });
-});
+
+  sections.forEach(sec => observer.observe(sec));
+
+  // Smooth scroll (keep this simple)
+  navItems.forEach(n => {
+    n.addEventListener('click', e => {
+      const hash = n.getAttribute('href');
+      if (!hash || !hash.startsWith('#')) return;
+      e.preventDefault();
+      const el = document.getElementById(hash.slice(1));
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
 </script>
